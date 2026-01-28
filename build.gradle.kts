@@ -72,4 +72,11 @@ tasks.withType<JavaExec>().configureEach {
 
 tasks.test {
     useJUnitPlatform()
+
+    testLogging {
+        testLogging {
+            events("started", "skipped", "failed", "standard_error", "standard_out")
+            exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.SHORT
+        }
+    }
 }
