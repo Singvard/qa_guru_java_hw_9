@@ -3,7 +3,7 @@ package utils;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.Cookie;
-import pages.SauceDemoLoginPage;
+import pages.LoginPage;
 
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
@@ -34,7 +34,7 @@ public class SessionManager {
     }
 
     private String createNewSession(String username, String password) {
-        new SauceDemoLoginPage().open()
+        new LoginPage().open()
                 .fillUsername(username)
                 .fillPassword(password)
                 .login();
@@ -72,7 +72,7 @@ public class SessionManager {
 
     public void openPageWithSession(String sessionToken, String url) {
         if (!WebDriverRunner.hasWebDriverStarted()) {
-            new SauceDemoLoginPage().open(); // Открываем любую страницу для инициализации драйвера
+            new LoginPage().open(); // Открываем любую страницу для инициализации драйвера
         }
         applySessionToBrowser(sessionToken);
         open(url);

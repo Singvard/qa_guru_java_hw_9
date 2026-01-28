@@ -2,36 +2,42 @@ package pages;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import utils.PageUtils;
 
-public class SauceDemoLoginPage {
+public class LoginPage implements ErrorPage {
     private static final String ADDRESS = "/";
     private static final SelenideElement USERNAME = Selenide.$(PageUtils.testId("username"));
     private static final SelenideElement PASSWORD = Selenide.$(PageUtils.testId("password"));
     private static final SelenideElement ERROR = Selenide.$(PageUtils.testId("error"));
     private static final SelenideElement LOGIN_BUTTON = Selenide.$(PageUtils.testId("login-button"));
 
-    public SauceDemoLoginPage open() {
+    @Step("Открыть страницу авторизации.")
+    public LoginPage open() {
         Selenide.open(ADDRESS);
         return this;
     }
 
-    public SauceDemoLoginPage fillUsername(String username) {
+    @Step("Заполнить поле логина значением: {username}.")
+    public LoginPage fillUsername(String username) {
         USERNAME.setValue(username);
         return this;
     }
 
-    public SauceDemoLoginPage fillPassword(String password) {
+    @Step("Заполнить поле пароля значением: {password}.")
+    public LoginPage fillPassword(String password) {
         PASSWORD.setValue(password);
         return this;
     }
 
-    public SauceDemoProductsPage login() {
+    @Step("Кликнуть кнопку авторизации.")
+    public ProductsPage login() {
         LOGIN_BUTTON.submit();
-        return new SauceDemoProductsPage();
+        return new ProductsPage();
     }
 
-    public SauceDemoLoginPage loginWithError() {
+    @Step("Кликнуть кнопку авторизации.")
+    public LoginPage loginWithError() {
         LOGIN_BUTTON.submit();
         return this;
     }

@@ -2,11 +2,12 @@ package pages;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import models.Item;
 import utils.PageUtils;
 import utils.SessionManager;
 
-public class SauceDemoProductsPage {
+public class ProductsPage {
     private static final String ADDRESS = "/inventory.html";
     private static final SelenideElement TITLE = Selenide.$(PageUtils.testId("title"));
     private static final SelenideElement CART = Selenide.$(PageUtils.testId("shopping-cart-link"));
@@ -37,12 +38,14 @@ public class SauceDemoProductsPage {
         return Integer.parseUnsignedInt(CART_BADGE.getText());
     }
 
-    public SauceDemoProductsPage openWithUser(String username, String password) {
+    @Step("Авторизоваться на сайте с логином: {username} и паролем: {password}.")
+    public ProductsPage openWithUser(String username, String password) {
         sessionManager.openPageWithSession(sessionManager.getOrCreateSession(username, password), ADDRESS);
         return this;
     }
 
-    public SauceDemoProductsPage addItemToCart(Item item) {
+    @Step("Добавить в корзину товар: {item}.")
+    public ProductsPage addItemToCart(Item item) {
         switch (item) {
             case BACKPACK -> ADD_BACKPACK_TO_CART.click();
             case BIKE_LIGHT -> ADD_BIKE_LIGHT_TO_CART.click();
@@ -54,8 +57,9 @@ public class SauceDemoProductsPage {
         return this;
     }
 
-    public SauceDemoCartPage goToCart() {
+    @Step("Перейти в корзину.")
+    public CartPage goToCart() {
         CART.click();
-        return new SauceDemoCartPage();
+        return new CartPage();
     }
 }
