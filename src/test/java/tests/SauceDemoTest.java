@@ -1,8 +1,6 @@
 package tests;
 
-import com.codeborne.selenide.Selenide;
 import models.Item;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -24,11 +22,6 @@ class SauceDemoTest extends BaseTest {
     private static final String BOLT_T_SHIRT_PRICE = "$15.99";
     private static final String EXPECTED_PAGE_TITLE = "Products";
     private static final int ONE = 1;
-
-    @AfterEach
-    void afterEach() {
-        Selenide.closeWebDriver();
-    }
 
     @ParameterizedTest(name = "Успешный вход с логином {0}.")
     @DisplayName("Успешная авторизация на сайте с различными валидными логинами.")
