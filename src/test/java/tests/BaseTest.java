@@ -11,5 +11,6 @@ public abstract class BaseTest {
     static void configureSelenide() {
         Configuration.browserSize = FULL_HD;
         Configuration.baseUrl = BASE_URL;
+        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
     }
 }
