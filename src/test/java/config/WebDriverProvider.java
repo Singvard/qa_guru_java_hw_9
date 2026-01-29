@@ -24,9 +24,10 @@ public class WebDriverProvider {
 
         if (config.isRemote()) {
             Configuration.remote = getRemoteUrl();
+            Configuration.browserCapabilities = getCapabilities();
         }
 
-        Configuration.browserCapabilities = getCapabilities();
+
     }
 
     private static String getRemoteUrl() {
@@ -39,21 +40,14 @@ public class WebDriverProvider {
 
     private static DesiredCapabilities getCapabilities() {
         var capabilities = new DesiredCapabilities();
-        capabilities.setCapability("browserName", Configuration.browser);
-        var browserVersion = Configuration.browserVersion;
-        if (Objects.nonNull(browserVersion)) {
-            capabilities.setCapability("browserVersion", Configuration.browserVersion);
-        }
 
-        if (config.isRemote()) {
-            capabilities.setCapability(
-                    "selenoid:options",
-                    Map.of(
-                            "enableVNC", config.enableVnc(),
-                            "enableVideo", config.enableVideo()
-                    )
-            );
-        }
+        capabilities.setCapability(
+                "selenoid:options",
+                Map.of(
+                        "enableVNC", config.enableVnc(),
+                        "enableVideo", config.enableVideo()
+                )
+        );
 
         return capabilities;
     }

@@ -12,7 +12,6 @@ import org.aeonbits.owner.Config;
 
 public interface WebDriverConfig extends Config{
     String CHROME = "CHROME";
-    String STABLE = "stable";
     String FULL_HD = "1920x1080";
     String FALSE = "false";
     String REMOTE_URL = "http://localhost:4444/wd/hub";
