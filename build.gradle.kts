@@ -43,7 +43,9 @@ dependencies {
     val allureSelenideVersion = "2.32.0"
     val assertjVersion = "3.27.6"
     val junitVersion = "6.0.2"
+    val ownerVersion = "1.0.12"
     val selenideVersion = "7.13.0"
+    val webdrivermanagerVersion = "6.3.3"
 
     implementation("com.opencsv:opencsv:$csvVersion")
     implementation("net.datafaker:datafaker:$datafakerVersion")
@@ -56,7 +58,9 @@ dependencies {
     testImplementation("io.qameta.allure:allure-selenide:$allureSelenideVersion")
     testImplementation("org.assertj:assertj-core:$assertjVersion")
     testImplementation("org.junit.jupiter:junit-jupiter:$junitVersion")
+    testImplementation("org.aeonbits.owner:owner:$ownerVersion")
     testImplementation("com.codeborne:selenide:$selenideVersion")
+    testImplementation("io.github.bonigarcia:webdrivermanager:$webdrivermanagerVersion")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
