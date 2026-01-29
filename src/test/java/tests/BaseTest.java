@@ -14,7 +14,14 @@ public abstract class BaseTest {
 
     @BeforeAll
     static void configureSelenide() {
+        System.out.println("=== DEBUG: SYSTEM PROPERTIES BEFORE CONFIG ===");
+        System.out.println("config.file = " + System.getProperty("config.file"));
+        System.out.println("remote.condition = " + System.getProperty("remote.condition"));
+        System.out.println("browser.name = " + System.getProperty("browser.name"));
+        System.out.println("Working Directory = " + System.getProperty("user.dir"));
+        System.out.println("==============================================");
         WebDriverProvider.configure();
+        var config = WebDriverProvider.getConfig();
         System.out.println("=== BASE TEST CONFIGURATION ===");
         System.out.println("Java version: " + System.getProperty("java.version"));
         System.out.println("OS: " + System.getProperty("os.name"));
@@ -24,6 +31,13 @@ public abstract class BaseTest {
         System.out.println("Remote URL: " + Configuration.remote);
         System.out.println("Base URL: " + Configuration.baseUrl);
         System.out.println("Timeout: " + Configuration.timeout);
+        System.out.println("=== CUSTOM CONFIG VALUES ===");
+        System.out.println("isRemote: " + config.isRemote());
+        System.out.println("remoteUrl: " + config.remoteUrl());
+        System.out.println("remoteUsername: " + config.remoteUsername());
+        System.out.println("remotePassword: " + config.remotePassword());
+        System.out.println("enableVnc: " + config.enableVnc());
+        System.out.println("enableVideo: " + config.enableVideo());
         System.out.println("=============================");
     }
 
