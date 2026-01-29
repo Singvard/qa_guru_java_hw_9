@@ -24,7 +24,6 @@ public interface WebDriverConfig extends Config{
     Browser browserName();
 
     @Key("browser.version")
-    @DefaultValue(STABLE)
     String browserVersion();
 
     @Key("browser.size")

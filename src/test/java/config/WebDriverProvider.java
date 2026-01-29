@@ -13,7 +13,11 @@ public class WebDriverProvider {
     public static void configure() {
         getConfig();
         Configuration.browser = config.browserName().toString();
-        Configuration.browserVersion = config.browserVersion();
+        var browserVersion = config.browserVersion();
+        if (Objects.nonNull(browserVersion)) {
+            Configuration.browserVersion = config.browserVersion();
+        }
+
         Configuration.browserSize = config.browserSize();
         Configuration.baseUrl = config.baseUrl();
         Configuration.timeout = config.timeout();
@@ -36,7 +40,10 @@ public class WebDriverProvider {
     private static DesiredCapabilities getCapabilities() {
         var capabilities = new DesiredCapabilities();
         capabilities.setCapability("browserName", Configuration.browser);
-        capabilities.setCapability("browserVersion", Configuration.browserVersion);
+        var browserVersion = Configuration.browserVersion;
+        if (Objects.nonNull(browserVersion)) {
+            capabilities.setCapability("browserVersion", Configuration.browserVersion);
+        }
 
         if (config.isRemote()) {
             capabilities.setCapability(
