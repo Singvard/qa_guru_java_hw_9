@@ -6,8 +6,8 @@ import org.aeonbits.owner.Config;
 @Config.Sources({
         "system:properties",
         "system:env",
-        "classpath:src/test/resources/config/local.properties",
-        "classpath:src/test/resources/config/remote.properties"
+        "classpath:config/${config.file}.properties",
+        "file:src/test/resources/config/${config.file}.properties"
 })
 
 public interface WebDriverConfig extends Config{
