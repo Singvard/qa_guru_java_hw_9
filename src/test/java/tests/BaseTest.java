@@ -6,24 +6,25 @@ import config.WebDriverProvider;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import utils.Attach;
 
 public abstract class BaseTest {
+    private static WebDriverProvider provider;
 
     @BeforeAll
     static void configureSelenide() {
-        WebDriverProvider.configure();
-    }
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide()
+                .screenshots(true)
+                .savePageSource(true)
+                .includeSelenideSteps(false));
 
-    @BeforeEach
-    void setUp() {
-        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
+        provider = new WebDriverProvider();
+        provider.configure();
     }
 
     @AfterEach
     void tearDown() {
-        if (WebDriverProvider.getConfig().isRemote()) {
+        if (provider.getConfig().isRemote()) {
             Attach.screenshotAs("Last screenshot");
             Attach.pageSources();
             Attach.browserConsoleLogs();

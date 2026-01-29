@@ -8,11 +8,19 @@ import java.util.Map;
 import java.util.Objects;
 
 public class WebDriverProvider {
-    private static WebDriverConfig config;
+    private final WebDriverConfig config;
 
-    public static void configure() {
-        getConfig();
+    public WebDriverProvider() {
+        this.config = ConfigFactory.create(WebDriverConfig.class, System.getProperties());
+    }
+
+    public WebDriverConfig getConfig() {
+        return config;
+    }
+
+    public void configure() {
         Configuration.browser = config.browserName().toString();
+
         var browserVersion = config.browserVersion();
         if (Objects.nonNull(browserVersion)) {
             Configuration.browserVersion = config.browserVersion();
@@ -30,7 +38,7 @@ public class WebDriverProvider {
 
     }
 
-    private static String getRemoteUrl() {
+    private String getRemoteUrl() {
         var url = config.remoteUrl();
         if (Objects.nonNull(config.remoteUsername()) && Objects.nonNull(config.remotePassword())) {
             url = url.replace("://", "://" + config.remoteUsername() + ":" + config.remotePassword() + "@");
@@ -38,7 +46,7 @@ public class WebDriverProvider {
         return url;
     }
 
-    private static DesiredCapabilities getCapabilities() {
+    private DesiredCapabilities getCapabilities() {
         var capabilities = new DesiredCapabilities();
 
         capabilities.setCapability(
@@ -50,12 +58,5 @@ public class WebDriverProvider {
         );
 
         return capabilities;
-    }
-
-    public static WebDriverConfig getConfig() {
-        if (Objects.isNull(config)) {
-            config = ConfigFactory.create(WebDriverConfig.class, System.getProperties());
-        }
-        return config;
     }
 }
