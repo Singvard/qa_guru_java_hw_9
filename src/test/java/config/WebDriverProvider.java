@@ -8,9 +8,10 @@ import java.util.Map;
 import java.util.Objects;
 
 public class WebDriverProvider {
-    private static final WebDriverConfig config = ConfigFactory.create(WebDriverConfig.class, System.getProperties());
+    private static WebDriverConfig config;
 
     public static void configure() {
+        getConfig();
         Configuration.browser = config.browserName().toString();
         Configuration.browserVersion = config.browserVersion();
         Configuration.browserSize = config.browserSize();
@@ -51,6 +52,9 @@ public class WebDriverProvider {
     }
 
     public static WebDriverConfig getConfig() {
+        if (Objects.isNull(config)) {
+            config = ConfigFactory.create(WebDriverConfig.class, System.getProperties());
+        }
         return config;
     }
 }
