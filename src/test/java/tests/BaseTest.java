@@ -33,7 +33,7 @@ public abstract class BaseTest {
         System.out.println("Timeout: " + Configuration.timeout);
         System.out.println("=== CUSTOM CONFIG VALUES ===");
         System.out.println("isRemote: " + config.isRemote());
-        System.out.println("remoteUrl: " + config.remoteUrl());
+        System.out.println("remoteUrl: " + Configuration.remote);
         System.out.println("remoteUsername: " + config.remoteUsername());
         System.out.println("remotePassword: " + config.remotePassword());
         System.out.println("enableVnc: " + config.enableVnc());
