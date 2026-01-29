@@ -77,7 +77,10 @@ tasks.withType<JavaExec>().configureEach {
 tasks.test {
     useJUnitPlatform()
 
-    systemProperties = System.getProperties().mapKeys { it.key.toString() }
+    val configFile = System.getProperty("config.file")
+    if (configFile != null) {
+        systemProperty("config.file", configFile)
+    }
 
     testLogging {
         events("started", "skipped", "failed", "standard_error", "standard_out")
