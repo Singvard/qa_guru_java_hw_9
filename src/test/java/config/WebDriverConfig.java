@@ -42,11 +42,9 @@ public interface WebDriverConfig extends Config{
     String remotePassword();
 
     @Key("enable.vnc")
-    @DefaultValue(FALSE)
     boolean enableVnc();
 
     @Key("enable.video")
-    @DefaultValue(FALSE)
     boolean enableVideo();
 
     @Key("base.url")

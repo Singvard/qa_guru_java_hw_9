@@ -32,8 +32,8 @@ public class WebDriverProvider {
 
         if (config.isRemote()) {
             Configuration.remote = getRemoteUrl();
+            Configuration.browserCapabilities = getCapabilities();
         }
-        Configuration.browserCapabilities = getCapabilities();
     }
 
     private String getRemoteUrl() {
