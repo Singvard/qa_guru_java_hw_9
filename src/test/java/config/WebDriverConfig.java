@@ -14,7 +14,6 @@ public interface WebDriverConfig extends Config{
     String CHROME = "CHROME";
     String FULL_HD = "1920x1080";
     String FALSE = "false";
-    String REMOTE_URL = "http://localhost:4444/wd/hub";
     String BASE_URL = "https://www.saucedemo.com";
     String TIMEOUT = "10000";
 
@@ -34,7 +33,6 @@ public interface WebDriverConfig extends Config{
     boolean isRemote();
 
     @Key("remote.url")
-    @DefaultValue(REMOTE_URL)
     String remoteUrl();
 
     @Key("remote.username")
