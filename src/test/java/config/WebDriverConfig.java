@@ -56,6 +56,6 @@ public interface WebDriverConfig extends Config{
     long timeout();
 
     @Key("headless")
-    @DefaultValue("false")
+    @DefaultValue(FALSE)
     boolean headless();
 }
