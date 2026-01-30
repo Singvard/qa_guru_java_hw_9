@@ -3,7 +3,9 @@ package config;
 public enum Browser {
     FIREFOX,
     CHROME,
-    EDGE;
+    EDGE,
+    OPERA,
+    SAFARI;
 
     @Override
     public String toString() {
