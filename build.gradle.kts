@@ -82,6 +82,29 @@ tasks.test {
         systemProperty("config.file", configFile)
     }
 
+    val params = setOf(
+        "config.file",
+        "browser.name",
+        "browser.version",
+        "browser.size",
+        "remote.condition",
+        "remote.url",
+        "remote.username",
+        "remote.password",
+        "enable.vnc",
+        "enable.video",
+        "base.url",
+        "timeout",
+        "headless"
+    )
+
+    val properties = System.getProperties()
+        .filter { (key, _) -> params.contains(key.toString()) }
+        .map { it.key.toString() to it.value }
+        .toMap()
+
+    systemProperties = properties
+
     testLogging {
         events("started", "skipped", "failed", "standard_error", "standard_out")
         exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.SHORT

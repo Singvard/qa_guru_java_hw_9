@@ -29,6 +29,7 @@ public class WebDriverProvider {
         Configuration.browserSize = config.browserSize();
         Configuration.baseUrl = config.baseUrl();
         Configuration.timeout = config.timeout();
+        Configuration.headless = config.headless();
 
         if (config.isRemote()) {
             Configuration.remote = getRemoteUrl();
