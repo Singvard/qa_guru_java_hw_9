@@ -77,33 +77,27 @@ tasks.withType<JavaExec>().configureEach {
 tasks.test {
     useJUnitPlatform()
 
-    val configFile = System.getProperty("config.file")
-    if (configFile != null) {
-        systemProperty("config.file", configFile)
-    }
-
-    val params = setOf(
-        "config.file",
-        "browser.name",
-        "browser.version",
-        "browser.size",
-        "remote.condition",
-        "remote.url",
-        "remote.username",
-        "remote.password",
-        "enable.vnc",
-        "enable.video",
-        "base.url",
-        "timeout",
-        "headless"
+    val properties = mapOf(
+        "config.file" to System.getProperty("config.file"),
+        "browser.name" to System.getProperty("browser.name"),
+        "browser.version" to System.getProperty("browser.version"),
+        "browser.size" to System.getProperty("browser.size"),
+        "remote.condition" to System.getProperty("remote.condition"),
+        "remote.url" to System.getProperty("remote.url"),
+        "remote.username" to System.getProperty("remote.username"),
+        "remote.password" to System.getProperty("remote.password"),
+        "enable.vnc" to System.getProperty("enable.vnc"),
+        "enable.video" to System.getProperty("enable.video"),
+        "base.url" to System.getProperty("base.url"),
+        "timeout" to System.getProperty("timeout"),
+        "headless" to System.getProperty("headless")
     )
 
-    val properties = System.getProperties()
-        .filter { (key, _) -> params.contains(key.toString()) }
-        .map { it.key.toString() to it.value }
-        .toMap()
-
-    systemProperties = properties
+    properties.forEach { (key, value) ->
+        if (value != null) {
+            systemProperty(key, value)
+        }
+    }
 
     testLogging {
         events("started", "skipped", "failed", "standard_error", "standard_out")
