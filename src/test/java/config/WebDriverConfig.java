@@ -54,4 +54,8 @@ public interface WebDriverConfig extends Config{
     @Key("timeout")
     @DefaultValue(TIMEOUT)
     long timeout();
+
+    @Key("headless")
+    @DefaultValue(FALSE)
+    boolean headless();
 }
