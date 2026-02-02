@@ -6,6 +6,7 @@ import config.WebDriverProvider;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import utils.Attach;
 
 public abstract class BaseTest {
@@ -13,14 +14,19 @@ public abstract class BaseTest {
 
     @BeforeAll
     static void configureSelenide() {
-        SelenideLogger.addListener("AllureSelenide", new AllureSelenide()
-                .screenshots(true)
-                .savePageSource(true)
-                .includeSelenideSteps(false));
 
         provider = new WebDriverProvider();
         provider.configure();
     }
+
+    @BeforeEach
+    void setUp() {
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide()
+                .screenshots(true)
+                .savePageSource(true)
+                .includeSelenideSteps(false));
+    }
+
 
     @AfterEach
     void tearDown() {

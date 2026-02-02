@@ -38,8 +38,10 @@ public class WebDriverProvider {
 
     private String getRemoteUrl() {
         var url = config.remoteUrl();
-        if (Objects.nonNull(config.remoteUsername()) && Objects.nonNull(config.remotePassword())) {
-            url = url.replace("://", "://" + config.remoteUsername() + ":" + config.remotePassword() + "@");
+        var remoteUsername = System.getProperty("remoteUsername");
+        var remotePassword = System.getProperty("remotePassword");
+        if (Objects.nonNull(remoteUsername) && Objects.nonNull(remotePassword)) {
+            url = url.replace("://", "://" + remoteUsername + ":" + remotePassword + "@");
         }
         return url;
     }

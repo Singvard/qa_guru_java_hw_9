@@ -35,12 +35,6 @@ public interface WebDriverConfig extends Config{
     @Key("remote.url")
     String remoteUrl();
 
-    @Key("remote.username")
-    String remoteUsername();
-
-    @Key("remote.password")
-    String remotePassword();
-
     @Key("enable.vnc")
     boolean enableVnc();
 
