@@ -77,9 +77,16 @@ tasks.withType<JavaExec>().configureEach {
 tasks.test {
     useJUnitPlatform()
 
-    val configFile = System.getProperty("config.file")
-    if (configFile != null) {
-        systemProperty("config.file", configFile)
+    val properties = mapOf(
+        "config.file" to System.getProperty("config.file"),
+        "remoteUsername" to System.getProperty("remoteUsername"),
+        "remotePassword" to System.getProperty("remotePassword")
+    )
+
+    properties.forEach { (key, value) ->
+        if (value != null) {
+            systemProperty(key, value)
+        }
     }
 
     testLogging {
